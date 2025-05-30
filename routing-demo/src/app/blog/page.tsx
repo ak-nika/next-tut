@@ -1,4 +1,6 @@
-const Blog = () => {
+const Blog = async () => {
+  await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulating a delay
+
   return (
     <div>
       <h1>Blog Page</h1>
