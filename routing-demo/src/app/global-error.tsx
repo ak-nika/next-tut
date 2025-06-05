@@ -1,6 +1,6 @@
 "use client"; // Error boundaries must be Client Components
 
-import "./globals.css";
+// import "./globals.css";
 
 // The file nme must be global-error
 // The file is for global error handling in the whole component and must have it's own html and body tags
