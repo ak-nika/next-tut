@@ -16,3 +16,24 @@ export async function GET(
     });
   }
 }
+
+export async function PATCH(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+  const { text } = await request.json();
+
+  const index = comments.findIndex((comment) => comment.id === parseInt(id));
+
+  if (index !== -1) {
+    comments[index].text = text;
+
+    return Response.json(comments[index]);
+  } else {
+    return new Response(JSON.stringify({ message: "Comment not found" }), {
+      headers: { "Content-Type": "application/json" },
+      status: 404,
+    });
+  }
+}
