@@ -37,3 +37,22 @@ export async function PATCH(
     });
   }
 }
+
+export async function DELETE(
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const { id } = await params;
+
+  const index = comments.findIndex((comment) => comment.id === parseInt(id));
+
+  if (index !== -1) {
+    comments.splice(index, 1);
+    return new Response(null, { status: 204 });
+  } else {
+    return new Response(JSON.stringify({ message: "Comment not found" }), {
+      headers: { "Content-Type": "application/json" },
+      status: 404,
+    });
+  }
+}
