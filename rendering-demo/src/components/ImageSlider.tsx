@@ -6,10 +6,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 
-export default function ClientRoute() {
+const ImageSlider = () => {
   const settings = {
     dots: true,
   };
+
   return (
     <div className="image-slider-container">
       <Slider {...settings}>
@@ -48,4 +49,6 @@ export default function ClientRoute() {
       </Slider>
     </div>
   );
-}
+};
+
+export default ImageSlider;
