@@ -1,5 +1,6 @@
 import { addProduct } from "@/prismaDB";
 import { redirect } from "next/navigation";
+import SubmitButton from "@/components/SubmitButton";
 
 export default function AddProduct() {
   const createProduct = async (formdata: FormData) => {
@@ -54,12 +55,7 @@ export default function AddProduct() {
           />
         </label>
 
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block mt-4 mx-auto cursor-pointer transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
-        >
-          Add Product
-        </button>
+        <SubmitButton>Add Product</SubmitButton>
       </form>
     </div>
   );
