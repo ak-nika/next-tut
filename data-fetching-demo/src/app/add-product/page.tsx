@@ -1,17 +1,8 @@
-import { addProduct } from "@/prismaDB";
-import { redirect } from "next/navigation";
-import SubmitButton from "@/components/SubmitButton";
+"use client";
+
+// import SubmitButton from "@/components/SubmitButton";
+import { createProduct, FormState } from "@/actions/products";
 import { useActionState } from "react";
-
-type Errors = {
-  title?: string;
-  price?: string;
-  description?: string;
-};
-
-type FormState = {
-  errors: Errors;
-};
 
 export default function AddProduct() {
   const initialState: FormState = {
@@ -23,39 +14,12 @@ export default function AddProduct() {
     initialState
   );
 
-  const createProduct = async (formdata: FormData) => {
-    "use server";
-
-    const title = formdata.get("title")?.toString() as string;
-    const price = formdata.get("price")?.toString() as string;
-    const description = formdata.get("description")?.toString() as string;
-
-    const errors: Errors = {};
-
-    if (!title) {
-      errors.title = "Title is required";
-    }
-    if (!price) {
-      errors.price = "Price is required";
-    }
-    if (!description) {
-      errors.description = "Description is required";
-    }
-
-    if (Object.keys(errors).length > 0) {
-      return { errors };
-    }
-
-    await addProduct(title, parseInt(price), description);
-    redirect("/products-db");
-  };
-
   return (
     <div className="p-4 max-w-7xl mx-auto">
       <h1 className="text-2xl text-center font-bold mb-8">Add Product</h1>
 
       <form
-        className="p-4 space-y-4 max-w-96 mx-auto bg-gray-200 text-gray-800"
+        className="p-4 space-y-4 max-w-96 mx-auto bg-gray-200 text-gray-800 rounded-lg"
         action={formAction}
       >
         <label>
