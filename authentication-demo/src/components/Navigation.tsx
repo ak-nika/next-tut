@@ -1,4 +1,10 @@
-import { SignInButton, SignOutButton, UserButton } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+  //   UserButton,
+} from "@clerk/nextjs";
 import Link from "next/link";
 
 const Navigation = () => {
@@ -12,19 +18,23 @@ const Navigation = () => {
             </h1>
           </div>
           <div className="flex items-center gap-4">
-            <SignInButton mode="modal">
-              <button className="text-[var(--background)] bg-[var(--foreground)] cursor-pointer rounded px-4 py-2 font-semibold outline-none">
-                Sign in
-              </button>
-            </SignInButton>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="text-[var(--background)] bg-[var(--foreground)] cursor-pointer rounded px-4 py-2 font-semibold outline-none">
+                  Sign in
+                </button>
+              </SignInButton>
+            </SignedOut>
 
-            <SignOutButton>
-              <button className="text-[var(--background)] bg-[var(--foreground)] cursor-pointer rounded px-4 py-2 font-semibold outline-none">
-                Sign out
-              </button>
-            </SignOutButton>
-            {/* <UserButton /> */}
-            <Link href="/userProfile">Profile</Link>
+            <SignedIn>
+              <SignOutButton>
+                <button className="text-[var(--background)] bg-[var(--foreground)] cursor-pointer rounded px-4 py-2 font-semibold outline-none">
+                  Sign out
+                </button>
+              </SignOutButton>
+              {/* <UserButton /> */}
+              <Link href="/userProfile">Profile</Link>
+            </SignedIn>
           </div>
         </div>
       </div>
